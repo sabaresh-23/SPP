@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <title>SUDHA PRINT N PACK</title>
+  <!-- Include Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <!-- Link to custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      padding-top: 8px; /* Adjust according to the height of the navbar */
+    }
+    map {
+      height: 400px; /* Set the height of the map */
+    }
+    .products-section {
+      color: black;
+    }
+    .about-us-section {
+      color: black;
+      padding-bottom: 50px;
+    }
+    .terms-of-service-section {
+      color: black;
+      
+    }
+  </style>
+</head>
+<body>
+  <!-- Root element for React app -->
+  <div id="root"></div>
+
+  <!-- Include Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Include React and ReactDOM -->
+  <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+
+  <!-- Include Babel for JSX transformation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Inline React Components and App Initialization -->
+  <script type="text/babel">
+    function Header() {
+      return (
+        <header>
+          <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top w-100">
+            <div className="container">
+              <a className="navbar-brand" href="#Home"> 
+                <img src="SUDHA.png" width="30" height="30" alt="Logo"/>
+                </a>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav ml-auto">
+                  <li className="nav-item">
+                    <a className="nav-link" href="#">Home</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#products">Products</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSeQYRwKfsXIGhGTnwdHDxzVfhfHEqPCVY6z0jHarGmFctKrKw/viewform">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </header>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="bg-dark text-white text-center py-4">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-4">
+                <h5>Company</h5>
+                <a href="#" className="text-white mr-3">About Us</a>
+                <a href="#" className="text-white mr-3">Locate Us </a>
+                <a href="#terms-of-service" className="text-white mr-3">Terms of Service</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQYRwKfsXIGhGTnwdHDxzVfhfHEqPCVY6z0jHarGmFctKrKw/viewform" className="text-white mr-3">Get in Touch</a>
+              </div>
+              <div className="col-md-4">
+                <h5>Follow Us</h5>
+                <a href="#" className="text-white mr-3">Facebook</a>
+                <a href="#" className="text-white mr-3">Instagram</a>
+                <a href="#" className="text-white mr-3">WhatsApp</a>
+                <a href="#" className="text-white">Email</a>
+              </div>
+              <div className="col-md-4">
+                <h5>Contact</h5>
+                <p>Email: info@mywebsite.com</p>
+                <p>Phone: +91 8610409905</p>
+                <p>Phone: +91 9843850681</p>
+              </div>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    function ProductCard({ image, title, description, onDetailsClick }) {
+      return (
+        <div className="col-md-4 mb-4">
+          <div className="card">
+            <img src={image} className="card-img-top" alt={title} />
+            <div className="card-body">
+              <h5 className="card-title">{title}</h5>
+              <p className="card-text">{description}</p>
+              <button className="btn btn-primary" onClick={onDetailsClick}>View Details</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function ProductModal({ product, show, onClose }) {
+      if (!show) {
+        return null;
+      }
+
+      return (
+        <div className="modal fade show d-block" tabIndex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">{product.title}</h5>
+                <button type="button" className="close" aria-label="Close" onClick={onClose}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <img src={product.image} className="img-fluid" alt={product.title} />
+                <p>{product.description}</p>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={onClose}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Products() {
+  const [selectedProduct, setSelectedProduct] = React.useState(null);
+
+  const productData = [
+    { image: 'https://via.placeholder.com/150', title: 'GRAVURE PRINTING', description: 'GRAVURE PRINTING' },
+    { image: 'https://via.placeholder.com/150', title: 'LAMINATION', description: 'LAMINATION' },
+    { image: 'https://via.placeholder.com/150', title: 'POUCHING', description: 'POUCHING' },
+    { image: 'https://via.placeholder.com/150', title: 'Product 4', description: 'Description for Product 4' },
+    { image: 'https://via.placeholder.com/150', title: 'Product 5', description: 'Description for Product 5' },
+    { image: 'https://via.placeholder.com/150', title: 'Product 6', description: 'Description for Product 6' },
+  ];
+
+  const handleDetailsClick = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
+
+  return (
+    <div className="two text-center" id="products">
+      <h2 className="mb-4">Our Products</h2>
+      <div className="row justify-content-center">
+        {productData.map((product, index) => (
+          <ProductCard
+            key={index}
+            image={product.image}
+            title={product.title}
+            description={product.description}
+            onDetailsClick={() => handleDetailsClick(product)}
+          />
+        ))}
+      </div>
+      <ProductModal
+        product={selectedProduct}
+        show={selectedProduct !== null}
+        onClose={handleCloseModal}
+      />
+    </div>
+  );
+}
+
+    function AboutUs() {
+  return (
+    <div className="container my-5 about-us-section" id="about-us">
+      <h2 className="text-center mb-4">About Us</h2>
+      <p>Welcome to <strong>Sudha Print N Pack</strong>, where quality meets excellence. With over 20 years of experience in the industry, we specialize in delivering top-notch gravure printing services that cater to a diverse range of needs. Our commitment to innovation and precision sets us apart, making us a trusted partner for businesses worldwide.</p>
+        
+        <h2 className="text-center mb-4">Our Mission</h2>
+        <p>At Precision Gravure Printing, our mission is to provide our clients with superior printing solutions that exceed their expectations. We aim to combine advanced technology, skilled craftsmanship, and exceptional customer service to create products that stand out in the market.</p>
+        
+        <h2 className="text-center mb-4">Our Services</h2>
+        <p>We offer a comprehensive range of gravure printing services, including:</p>
+        <ul>
+            <li><strong>Packaging Printing:</strong> High-quality printing for flexible packaging, labels, and pouches.</li>
+            <li><strong>Lamination Printing:</strong> Stunning lamination prints for your packaging needs .</li>
+            <li><strong>Pouch Printing:</strong> Advanced solutions for pouching needs.</li>
+        </ul>
+      </div>
+  );
+}
+
+function map(){
+  return(
+    <div id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d565.1737319369271!2d78.13176468172347!3d9.855356390306914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1716371220470!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  );
+}
+
+    function App() {
+      return (
+        <div className = "one">
+          <Header />
+          <div className="container my-5">
+            <img src="SUDHA.png" alt="Welcome" className="img-fluid my-3" />
+          </div>
+          <Products />
+          <AboutUs  />
+          <Footer />
+          
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
