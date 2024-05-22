@@ -84,8 +84,14 @@ body {
     background: scroll;
     background-image: url(bg2.jpg);
     
+    
   }
-  
+  .three{
+    padding-bottom: 50px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
 
   .two{
     padding-top: 50px;
