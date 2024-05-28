@@ -83,6 +83,8 @@ body {
   .one{
     background: scroll;
     background-image: url(bg2.jpg);
+    padding-top: 50px
+    ;
     
     
   }
@@ -91,6 +93,7 @@ body {
     display: flex;
   justify-content: center;
   align-items: center;
+  width: 300px;
   }
 
   .two{
@@ -99,3 +102,9 @@ body {
     padding-right: 50px;
     padding-bottom: 50px;
   }
+  .carousel-inner{
+    margin-top: -200px;
+    height: 650px;
+  }
+ 
+
