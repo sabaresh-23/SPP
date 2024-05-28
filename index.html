@@ -4,32 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
   <title>SUDHA PRINT N PACK</title>
   <!-- Include Bootstrap CSS -->
-  <link
-    rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-  />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
   <!-- Link to custom CSS -->
   <link rel="stylesheet" href="styles.css">
   <style>
     body {
-      padding-top: 8px; /* Adjust according to the height of the navbar */
+      padding-top: 56px; /* Adjust according to the height of the navbar */
     }
-    map {
-      height: 400px; /* Set the height of the map */
+    .carousel-item {
+      height: 70vh;
+      min-height: 300px;
+      background: no-repeat center center scroll;
+      background-size: cover;
     }
-    .products-section {
-      color: black;
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
     }
-    .about-us-section {
+    .products-section, .about-us-section, .terms-of-service-section {
       color: black;
       padding-bottom: 50px;
-    }
-    .terms-of-service-section {
-      color: black;
-      
     }
   </style>
 </head>
@@ -56,9 +52,9 @@
         <header>
           <nav className="navbar navbar-expand-lg navbar-dark bg-primary fixed-top w-100">
             <div className="container">
-              <a className="navbar-brand" href="#Home"> 
+              <a className="navbar-brand" href="#Home">
                 <img src="SUDHA.png" width="30" height="30" alt="Logo"/>
-                </a>
+              </a>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
@@ -81,6 +77,37 @@
       );
     }
 
+    function Carousel() {
+      return (
+        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
+          <ol className="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div className="carousel-inner">
+            <div className="carousel-item active" style={{backgroundImage: 'url("carousel-image1.jpg")'}}>
+              
+            </div>
+            <div className="carousel-item" style={{backgroundImage: 'url("carousel-image2.jpg")'}}>
+              
+            </div>
+            <div className="carousel-item" style={{backgroundImage: 'url("carousel-image3.jpg")'}}>
+              
+            </div>
+          </div>
+          <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
+          </a>
+          <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
+          </a>
+        </div>
+      );
+    }
+
     function Footer() {
       return (
         <footer className="bg-dark text-white text-center py-4">
@@ -89,7 +116,7 @@
               <div className="col-md-4">
                 <h5>Company</h5>
                 <a href="#" className="text-white mr-3">About Us</a>
-                <a href="#" className="text-white mr-3">Locate Us </a>
+                <a href="#" className="text-white mr-3">Locate Us</a>
                 <a href="#terms-of-service" className="text-white mr-3">Terms of Service</a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSeQYRwKfsXIGhGTnwdHDxzVfhfHEqPCVY6z0jHarGmFctKrKw/viewform" className="text-white mr-3">Get in Touch</a>
               </div>
@@ -198,24 +225,32 @@
   );
 }
 
-    function AboutUs() {
+function AboutUs() {
   return (
     <div className="container my-5 about-us-section" id="about-us">
-      <h2 className="text-center mb-4">About Us</h2>
-      <p>Welcome to <strong>Sudha Print N Pack</strong>, where quality meets excellence. With over 20 years of experience in the industry, we specialize in delivering top-notch gravure printing services that cater to a diverse range of needs. Our commitment to innovation and precision sets us apart, making us a trusted partner for businesses worldwide.</p>
-        
-        <h2 className="text-center mb-4">Our Mission</h2>
-        <p>At Precision Gravure Printing, our mission is to provide our clients with superior printing solutions that exceed their expectations. We aim to combine advanced technology, skilled craftsmanship, and exceptional customer service to create products that stand out in the market.</p>
-        
-        <h2 className="text-center mb-4">Our Services</h2>
-        <p>We offer a comprehensive range of gravure printing services, including:</p>
-        <ul>
+      <div className="row">
+        <div className="col-md-6">
+          <h2 className="text-center mb-4">About Us</h2>
+          <p>Welcome to <strong>Sudha Print N Pack</strong>, where quality meets excellence. With over 20 years of experience in the industry, we specialize in delivering top-notch gravure printing services that cater to a diverse range of needs. Our commitment to innovation and precision sets us apart, making us a trusted partner for businesses worldwide.</p>
+
+          <h2 className="text-center mb-4">Our Mission</h2>
+          <p>At Precision Gravure Printing, our mission is to provide our clients with superior printing solutions that exceed their expectations. We aim to combine advanced technology, skilled craftsmanship, and exceptional customer service to create products that stand out in the market.</p>
+
+          <h2 className="text-center mb-4">Our Services</h2>
+          <p>We offer a comprehensive range of gravure printing services, including:</p>
+          <ul>
             <li><strong>Packaging Printing:</strong> High-quality printing for flexible packaging, labels, and pouches.</li>
-            <li><strong>Lamination Printing:</strong> Stunning lamination prints for your packaging needs .</li>
+            <li><strong>Lamination Printing:</strong> Stunning lamination prints for your packaging needs.</li>
             <li><strong>Pouch Printing:</strong> Advanced solutions for pouching needs.</li>
-        </ul>
+          </ul>
+        </div>
+        <div className="col-md-6">
+          <img src="path_to_your_image.jpg" alt="About Us Image" className="img-fluid" />
+        </div>
       </div>
+    </div>
   );
+
 }
 
 function map(){
@@ -231,8 +266,9 @@ function map(){
         <div className = "one">
           <Header />
           <div className="three my-5">
-            <img src="SUDHA.png" alt="Welcome" className="img-fluid my-3" />
+            
           </div>
+          <Carousel />
           <Products />
           <AboutUs  />
           <Footer />
