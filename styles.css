@@ -72,10 +72,22 @@ body {
   
   }
   
+  
   .card {
     margin-bottom: 20px;
-  }
-  
+    height: 100%; /* Ensure all cards have the same height */
+}
+
+.card-img-top {
+    height: 200px; /* Set a fixed height for all images */
+    object-fit: cover; /* This ensures the image covers the area without stretching */
+    width: 100%; /* Ensure the image fills the width of the card */
+}
+
+.card-body {
+    flex: 1; /* Ensure the body takes up the remaining space */
+}
+
   .modal-backdrop {
     display: none;
   }
@@ -106,5 +118,6 @@ body {
     margin-top: -200px;
     height: 650px;
   }
+  
  
 
